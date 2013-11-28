@@ -25,6 +25,7 @@ public class MainActivity extends Activity {
 	
 	public static Camera getCameraInstance() {
 		Camera c = null;
+		
 		try {
 			c = Camera.open();
 		} catch (Exception e) {
@@ -44,17 +45,10 @@ public class MainActivity extends Activity {
 	@Override
 	public void onPause() {
 		super.onPause();
-		releaseCamera();
+		mPreview.stop();
+		mPreview = null;
 	}
 	
-	private void releaseCamera() {
-		if (mCamera != null) {
-			mCamera.release();
-			mCamera = null;
-			
-		}
-	}
-
 	/*
 	private boolean safeCameraOpen(int id) {
 		boolean qOpened = false;
